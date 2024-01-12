@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaisy <bfaisy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 18:55:17 by bfaisy            #+#    #+#             */
-/*   Updated: 2024/01/12 17:13:53 by bfaisy           ###   ########.fr       */
+/*   Created: 2024/01/11 18:52:38 by bfaisy            #+#    #+#             */
+/*   Updated: 2024/01/12 21:05:09 by bfaisy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+#include "Base.hpp"
 
-#include <iostream>
-
-class ScalarConverter
+int main(void)
 {
-public :
-	static void char_to_char(std::string str);
-	static void char_to_int(std::string str);
-	static void char_to_double(std::string str);
-	static void char_to_float(std::string str);
-private :
-	ScalarConverter();
-	~ScalarConverter();
-};
+	srand(time(0));
+    Base *p = generate();
+    identify(p);
+    identify(*p);
+	return 0;	
+}
