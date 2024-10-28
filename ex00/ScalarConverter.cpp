@@ -6,13 +6,13 @@
 /*   By: bfaisy <bfaisy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:55:12 by bfaisy            #+#    #+#             */
-/*   Updated: 2024/01/11 21:47:35 by bfaisy           ###   ########.fr       */
+/*   Updated: 2024/09/11 18:32:03 by bfaisy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-void ScalarConverter::char_to_char(std::string str){ 
+void ScalarConverter::char_to_char(const char *str){ 
     int i = 0;
     int intValue = 0;
     while (str[i])
@@ -25,26 +25,26 @@ void ScalarConverter::char_to_char(std::string str){
         intValue += str[i];
         i++;
     }
-    if ((std::stoi(str)) == (std::stod(str)))
+    if (intValue < 256)
         std::cout << "char : "<< static_cast<char>(intValue) << std::endl;
     else
         std::cout << "char : Impossible\n";
 }
 
-void ScalarConverter::char_to_int(std::string str) {
-	if (str == "-inff"  || str == "+inff" || str == "-inf" || str == "+inf"){
+void ScalarConverter::char_to_int(const char *str) {
+	if (!(strcmp(str,"+inff") || strcmp(str,"-inff") || strcmp(str,"+inf"))){
 		std::cout << "Valeur entière : " << str << std::endl; return ;}
 	try {
-        int intValue = static_cast<int>(std::stoi(str));
+        int intValue = static_cast<int>(atoi(str));
         std::cout << "Valeur entière : " << intValue << std::endl;}
     catch (const std::invalid_argument& ia) {std::cout << "Valeur entière : " << "impossible" << std::endl;} 
     catch (const std::out_of_range& oor) {std::cout << "impossible" << std::endl;}
 }
-void ScalarConverter::char_to_double(std::string str){
-    if (str == "-inff"  || str == "+inff" || str == "-inf" || str == "+inf" || str == "nan"){
+void ScalarConverter::char_to_double(const char *str){
+    if (!(strcmp(str,"+inff")  || strcmp(str,"-inff") || strcmp(str,"-inf") || strcmp(str,"+inf") || strcmp(str,"nan"))){
 		std::cout << "Valeur double : " << str << std::endl; return ;}
     try {
-        double doubleValue = static_cast<double>(std::stod(str));
+        double doubleValue = (atof(str));
         std::cout << "Valeur double : " << doubleValue << std::endl;
     } catch (const std::invalid_argument& ia) {
         std::cerr << "impossible" << std::endl;
@@ -53,12 +53,12 @@ void ScalarConverter::char_to_double(std::string str){
     }
 }
 
-void ScalarConverter::char_to_float(std::string str)
+void ScalarConverter::char_to_float(const char *str)
 {
-    if (str == "-inff"  || str == "+inff" || str == "-inf" || str == "+inf" || str == "nan"){
+    if (!(strcmp(str,"+inff")  || strcmp(str,"-inff") || strcmp(str,"-inf") || strcmp(str,"+inf") || strcmp(str,"nan"))){
 		std::cout << "Valeur float : " << str << "f" << std::endl; return ;}
     try {
-        float resultat = static_cast<float>(std::stof(str));
+        float resultat = static_cast<float>((atof(str)));
         std::cout << "Valeur float : " << resultat << "f" << std::endl;
     } catch (const std::invalid_argument& e) {
         std::cerr << "impossible" << std::endl;
