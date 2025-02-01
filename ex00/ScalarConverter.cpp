@@ -13,22 +13,20 @@
 #include "ScalarConverter.hpp"
 
 void ScalarConverter::char_to_char(const char *str){ 
-    int i = 0;
     int intValue = 0;
-    while (str[i])
+    for (size_t i = 0;  i + 1< std::strlen(str); i++)
     {
-        if (std::isalpha(str[1]))
+        if (isalpha(str[i]))
         {
-            std::cout << "char : Impossible\n";
+            std::cout << "char : impossible\n";
             return ;
         }
-        intValue += str[i];
-        i++;
     }
-    if (intValue < 256)
-        std::cout << "char : "<< static_cast<char>(intValue) << std::endl;
+    intValue = std::atoi(str);
+    if (intValue <= 31 | intValue > 256)
+        std::cout << "char : Non displayable\n";
     else
-        std::cout << "char : Impossible\n";
+        std::cout << "char : "<< static_cast<char>(intValue) << std::endl;
 }
 
 void ScalarConverter::char_to_int(const char *str) {
